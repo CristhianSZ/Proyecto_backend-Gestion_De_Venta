@@ -82,6 +82,7 @@ En el body:
 
 
 ## -Meddleware verificarToken
+--PRODUCTOS---
     Cuando se hace una peticion a la ruta 
     http://localhost:3000/api/productos
         Para traer todos productos, primero verifica el token y luego sigue con traer todos los productos
@@ -93,6 +94,79 @@ En la url
 http://localhost:3000/api/productos
 En la cabecera
 authorization : `token que se genero al identificarse en el login`
+
+--CLIENTES---
+obtener clientes
+Metodo: get
+En la url
+http://localhost:3000/api/clientes
+En la cabecera
+authorization : `token que se genero al identificarse en el login`
+
+
+--VENTAS---
+obtener una venta
+Metodo: get
+En la url
+http://localhost:3000/api/ventas/`id`
+En la cabecera
+authorization : `token que se genero al identificarse en el login`
+
+obtener todas las ventas
+Metodo: get
+En la url
+http://localhost:3000/api/ventas/
+En la cabecera
+authorization : `token que se genero al identificarse en el login`
+
+
+## -Seccion Clientes
+
+Crear un cliente
+Metodo: post
+En la url
+http://localhost:3000/api/clientes
+En el body
+{
+  "nombre":  "nombre del cliente",
+  "apellido": "apellido del cliente",
+  "telefono": "3865-24120"
+}
+
+Modificar un cliente
+Metodo: put
+En la url
+http://localhost:3000/api/clientes/`id`
+En el body
+{
+  "nombre":  "nombre del cliente",
+  "apellido": "Nuevo apellido del cliente",
+  "telefono": "3865-24120"
+}
+
+eliminar un cliente
+Metodo: delete
+En la url
+http://localhost:3000/api/clientes/`id`
+
+
+
+## -Seccion Ventas
+
+Crear una venta
+Metodo: post
+En la url
+http://localhost:3000/api/ventas
+En el body
+{
+  "fecha": "2024-06-22T00:00:00.000Z",
+  "cantidad": 102,
+  "total": 100.00,
+  "productoId": 1,
+  "clientesId": 2
+}
+
+
 
 
 
@@ -155,3 +229,28 @@ CREATE TABLE productos (
 );
 
 
+CREATE TABLE ventas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE NOT NULL,
+    cantidad INT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    productoId INT DEFAULT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    clientesId INT DEFAULT NULL,
+    KEY fk_producto (productoId),
+    KEY fk_ventas_clientes (clientesId),
+    CONSTRAINT fk_producto FOREIGN KEY (productoId) REFERENCES productos (id),
+    CONSTRAINT fk_ventas_clientes FOREIGN KEY (clientesId) REFERENCES clientes (id)
+);
+
+
+
+CREATE TABLE clientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255),
+    telefono VARCHAR(50),
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

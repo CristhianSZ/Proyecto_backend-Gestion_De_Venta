@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {verificarToken} = require("../middlewares/authMiddleware")
+const { verificarToken } = require("../middlewares/authMiddleware")
 
 // Importar los controladores de productos
 const {
@@ -14,7 +14,7 @@ const {
 router.post("/", crearProducto);
 
 // Ruta para obtener todos los productos
-router.get("/",verificarToken, obtenerProductos);
+router.get("/", verificarToken, obtenerProductos);
 
 // Ruta para actualizar un producto
 router.put("/:id", actualizarProducto);
