@@ -9,7 +9,8 @@ const categoriaRouter = require("./routes/categoriaRoutes");
 const proveedorRouter = require("./routes/proveedorRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
-import "dotenv/config";
+const dotenv = require("dotenv");
+dotenv.config();
 const db = require("./data/db");
 
 app.use(cors());
