@@ -5,6 +5,8 @@ const productosRouter = require("./routes/productosRoutes");
 const usuarioRouter = require("./routes/usuarioRoutes");
 const ventasRouter = require("./routes/ventasRoutes");
 const clientesRouter = require("./routes/clientesRoutes");
+const categoriaRouter = require("./routes/categoriaRoutes");
+const proveedorRouter = require("./routes/proveedorRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -18,6 +20,8 @@ app.use("/api/productos", productosRouter);
 app.use("/api/usuarios", usuarioRouter);
 app.use("/api/ventas", ventasRouter)
 app.use("/api/clientes", clientesRouter)
+app.use("/api/categorias", categoriaRouter)
+app.use("/api/proveedores", proveedorRouter)
 app.get("/", (req, res) => {
   res.send("¡Bienvenido a la API del sistema de gestión!");
 });
