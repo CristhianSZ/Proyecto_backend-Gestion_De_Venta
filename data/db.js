@@ -1,14 +1,15 @@
-const {Sequelize} = require ("sequelize")
+const { Sequelize } = require("sequelize");
+require("dotenv").config();
 
-/*  nombre de la base de datos -  user - contraseña - {donde esta alojada?,lenguaje, puerto} */
-
-const db = new Sequelize ("sistema_gestion_venta","root","1234",{
+const db = new Sequelize(
+  process.env.MYSQL_ADDON_DB, 
+  process.env.MYSQL_ADDON_USER, 
+  process.env.MYSQL_ADDON_PASSWORD, 
+  {
     host: process.env.MYSQL_ADDON_HOST,
-    user: process.env.MYSQL_ADDON_USER,
-    password: process.env.MYSQL_ADDON_PASSWORD,
-    database:process.env.MYSQL_ADDON_DB,
     dialect: "mysql",
     port: process.env.MYSQL_ADDON_PORT
-})
+  }
+);
 
-module.exports= db
+module.exports = db;
