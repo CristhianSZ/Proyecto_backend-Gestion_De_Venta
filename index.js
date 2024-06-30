@@ -9,7 +9,7 @@ const categoriaRouter = require("./routes/categoriaRoutes");
 const proveedorRouter = require("./routes/proveedorRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
-
+import "dotenv/config";
 const db = require("./data/db");
 
 app.use(cors());
@@ -18,10 +18,10 @@ app.use(morgan("dev"));
 
 app.use("/api/productos", productosRouter);
 app.use("/api/usuarios", usuarioRouter);
-app.use("/api/ventas", ventasRouter)
-app.use("/api/clientes", clientesRouter)
-app.use("/api/categorias", categoriaRouter)
-app.use("/api/proveedores", proveedorRouter)
+app.use("/api/ventas", ventasRouter);
+app.use("/api/clientes", clientesRouter);
+app.use("/api/categorias", categoriaRouter);
+app.use("/api/proveedores", proveedorRouter);
 app.get("/", (req, res) => {
   res.send("¡Bienvenido a la API del sistema de gestión!");
 });
